@@ -1,4 +1,4 @@
-
+package training;
 
 /*
  * Carlos Daniel 
@@ -68,7 +68,7 @@ public class Comercio {
 	public static void listarProdutos() {
 
 		if (ListaProdutos.isEmpty()) {
-			System.out.println("Não existem produtos cadastrados");
+			System.out.println("Não existem produtos cadastrados!");
 			return;
 		} else {
 			for (Produto produto : ListaProdutos) {
@@ -92,7 +92,7 @@ public class Comercio {
 			codigo = entrada.nextInt();
 
 			if (verificacao(codigo)) {
-				System.out.println("Código já cadastrado");
+				System.out.println("Código já cadastrado!");
 				return;
 			}
 
@@ -119,7 +119,7 @@ public class Comercio {
 
 	private static void adicionarEstoque() {
 		if (ListaProdutos.isEmpty()) {
-			System.out.println("Não existem produtos cadastrados.");
+			System.out.println("Não existem produtos cadastrados!");
 			return;
 		}
 
@@ -133,17 +133,17 @@ public class Comercio {
 				System.out.print("Quantidade a ser adicionada: ");
 				int adicionarEstoque = entrada.nextInt();
 				produto.estoque += adicionarEstoque;
-				System.out.println("Estoque atualizado com sucesso.");
+				System.out.println("Estoque atualizado com sucesso!");
 				return;
 			}
 		}
-		System.out.println("Código inválido.");
+		System.out.println("Código inválido!");
 	}
 
 	private static void removerProduto() {
 
 		if (ListaProdutos.isEmpty()) {
-			System.out.println("Não existem produtos cadastrados para remover");
+			System.out.println("Não existem produtos cadastrados para remover!");
 			return;
 		}
 
@@ -183,7 +183,7 @@ public class Comercio {
 
 	private static void venderProduto() {
 		if (ListaProdutos.isEmpty()) {
-			System.out.println("Não existem produtos cadastrados para vender");
+			System.out.println("Não existem produtos cadastrados para vender!");
 			return;
 		}
 
@@ -192,23 +192,24 @@ public class Comercio {
 
 		for (Produto produto : ListaProdutos) {
 			if (produto.codigo == codigo) {
-				System.out.print("Digite a quantidade que será  a ser vendida: ");
+				System.out.print("Digite a quantidade que a ser vendida: ");
 				int quantidadeVendida = entrada.nextInt();
 
 				if (quantidadeVendida <= produto.estoque) {
 					produto.estoque -= quantidadeVendida;
-					System.out.println("Venda realizada com sucesso! Estoque atualizado");
+					System.out.println("Venda realizada com sucesso! Estoque atualizado!");
+					return;
 				} else {
-					System.out.println("Quantidade insuficiente em estoque.");
+					System.out.println("Quantidade insuficiente em estoque!");
 					return;
 				}
 
-			} else {
-				System.out.println("Código inválido");
-				return;
-			}
+				} else {
+					System.out.println("Código inválido!");
+					return;
+				}
 		}
-		System.out.println("Código inválido");
+		 
 	}
 
 	private static boolean verificacao(int codigo) {
