@@ -1,55 +1,60 @@
 package com;
 
-import java.util.Scanner;
+import com.funcionalidade.*;
+import com.entidade.*;
+import javax.swing.JOptionPane;
 
 public class Main {
 
-	private static Scanner entrada = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
-		int opcao = 1;
+		String opcao = "1";
 
-		while (opcao != 6) {
-			exibirMenu();
-			opcao = entrada.nextInt();
-			entrada.nextLine();
-
-			if (opcao == 1) {
-				listarProdutos();
-			} else if (opcao == 2) {
+		while (!opcao.equals("6")) {
+			opcao = JOptionPane.showInputDialog(Funcionalidade.exibirMenu());
+			
+			if(opcao == null) {
+				opcao = "6";
+			}
+			if (opcao.equals("1")) {
+				JOptionPane.showMessageDialog(null, Funcionalidade.printarProdutos());
+				
+			} else if (opcao.equals("2")) {
 				cadastrarProduto();
-			} else if (opcao == 3) {
+				
+			} else if (opcao.equals("3")) {
 				adicionarEstoque();
-			} else if (opcao == 4) {
+				
+			} else if (opcao.equals("4")) {
 				removerProduto();
-			} else if (opcao == 5) {
+				
+			} else if (opcao.equals("5")) {
 				venderProduto();
-			} else if (opcao == 6) {
-				System.out.println("Saindo do programa.");
+				
+			} else if (opcao.equals("6")) {
+				JOptionPane.showMessageDialog(null, "Obrigado por usar nosso sistema!");
+				
 			} else {
-				System.out.println("Opção inválida, escolha uma opção válida.");
+				JOptionPane.showMessageDialog(null, "Opção inválida");
 			}
 		}
 	}
 
-	private static void exibirMenu() {
-		System.out.println("\n1) Listar todos os produtos");
-		System.out.println("2) Cadastrar novo produto");
-		System.out.println("3) Adicionar estoque de um produto");
-		System.out.println("4) Remover produto");
-		System.out.println("5) Vender produto");
-		System.out.println("6) Sair");
-		System.out.print("\nEscolha uma opção: ");
-	}
 
-	public static void listarProdutos() {
-
-		
-	}
 
 	private static void cadastrarProduto() {
-
+		Produto novoProduto = null;
+		
+		String nome = JOptionPane.showInputDialog("Digite o nome do produto");
+		String codigo = JOptionPane.showInputDialog("Digite o código do produto");
+		int estoque = 0;
+		
+		novoProduto = new Produto(nome, codigo, estoque);
+		
+		Funcionalidade.addProduto(novoProduto);
+		
+		JOptionPane.showMessageDialog(null, Funcionalidade.printarAtual(nome, codigo, estoque));
 
 	}
 

@@ -2,10 +2,10 @@ package com.entidade;
 
 public class Produto {
 	private String nome;
-	private int codigo;
+	private String codigo;
 	private int estoque;
 	
-	public Produto(String nome, int codigo, int estoque) {
+	public Produto(String nome, String codigo, int estoque) {
 		setNome(nome);
 		setCodigo(codigo);
 		setEstoque(estoque);
@@ -19,11 +19,11 @@ public class Produto {
 		this.nome = nome;
 	}
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
