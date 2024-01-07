@@ -13,18 +13,40 @@ public class Funcionalidade {
 			msg = "Não existem produtos cadastrados";
 		} else {
 			for (Produto p : ListaProdutos) {
-				msg += String.format("%s (cód.: %s | estoque: %d)\n", p.getNome(), p.getCodigo(), p.getEstoque());
+				msg += String.format("%s (cód.: %d | estoque: %d)\n", p.getNome(), p.getCodigo(), p.getEstoque());
 			}
 		}
 
 		return msg;
 	}
-	
 
-	public static String printarAtual(String nome, String codigo, int estoque) {
-		return String.format("%s cadastrado com sucesso! (Código: %s | Estoque: %d)\n", nome, codigo, estoque);
+	public static boolean tentarInt(String codigo) {
+		try {
+			Integer.parseInt(codigo);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+
 	}
-	
+
+	public static boolean verificarCodigo(String codigo) {
+		if (!tentarInt(codigo)) {
+			return false;
+		}
+		for (Produto p : ListaProdutos) {
+			if (Integer.parseInt(codigo) == p.getCodigo()) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	public static String printarAtual(String nome, String codigo, String estoque) {
+		return String.format("%s cadastrado com sucesso! (Código: %s | Estoque: %s)\n", nome, codigo, estoque);
+	}
+
 	public static String exibirMenu() {
 		return """
 				1) Listar todos os produtos
@@ -33,14 +55,12 @@ public class Funcionalidade {
 				4) Remover produto
 				5) Vender produto
 				6) Sair
-				\nEscolha uma opção: 
+				\nEscolha uma opção:
 				""";
 	}
-	
+
 	public static void addProduto(Produto produto) {
 		ListaProdutos.add(produto);
 	}
-	
-	
-	
+
 }
