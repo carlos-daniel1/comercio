@@ -89,7 +89,7 @@ public class Main {
 				if (Funcionalidade.verificarQuantidade(quantidade)) {
 					produto.setEstoque(produto.getEstoque() + Integer.parseInt(quantidade));
 
-					JOptionPane.showMessageDialog(null, String.format("%s atualizado com sucesso. Novo estoque: %d",
+					JOptionPane.showMessageDialog(null, String.format("%s atualizado com sucesso. \nNovo estoque: %d",
 							produto.getNome(), produto.getEstoque()));
 
 				} else {
@@ -112,12 +112,13 @@ public class Main {
 			Produto produto = Funcionalidade.retornarProduto(codigo);
 			
 			if(produto != null) {
-				String quantidade = JOptionPane.showInputDialog("Digite a quantidade que deseja vender: ");
+				String quantidade = JOptionPane.showInputDialog(String.format("%s (Estoque: %d)", produto.getNome().
+						toUpperCase(), produto.getEstoque()) + "\nDigite a quantidade que deseja vender: ");
 				
 				if(Funcionalidade.verificarVenda(quantidade, produto)) {
 					produto.setEstoque(produto.getEstoque() - Integer.parseInt(quantidade));
 					
-					JOptionPane.showMessageDialog(null, String.format("Produto %s vendido com sucesso! "
+					JOptionPane.showMessageDialog(null, String.format("%s vendido com sucesso! "
 							+ "Estoque atualizado: %d", produto.getNome(), produto.getEstoque()));	
 				} else {
 					JOptionPane.showMessageDialog(null, "Quantidade inválida!");
@@ -150,7 +151,7 @@ public class Main {
 					}
 				}
 				JOptionPane.showMessageDialog(null,
-						String.format("Produto (%s) removido com sucesso!", produto.getNome()));
+						String.format("%s removido com sucesso!", produto.getNome()));
 				Funcionalidade.removerProduto(produto);
 			} else {
 				JOptionPane.showMessageDialog(null, "Produto não encontrado!");

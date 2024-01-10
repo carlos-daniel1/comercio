@@ -13,7 +13,7 @@ public class Funcionalidade {
 			msg = "Não existem produtos cadastrados";
 		} else {
 			for (Produto p : ListaProdutos) {
-				msg += String.format("%s (cód.: %d | estoque: %d)\n", p.getNome(), p.getCodigo(), p.getEstoque());
+				msg += String.format("%s (código: %d | estoque: %d)\n", p.getNome(), p.getCodigo(), p.getEstoque());
 			}
 		}
 
