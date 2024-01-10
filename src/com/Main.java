@@ -26,10 +26,10 @@ public class Main {
 				adicionarEstoque();
 
 			} else if (opcao.equals("4")) {
-				removerProduto();
+				venderProduto();
 
 			} else if (opcao.equals("5")) {
-				venderProduto();
+				removerProduto();
 
 			} else if (opcao.equals("6")) {
 				JOptionPane.showMessageDialog(null, "Obrigado por usar nosso sistema!");
@@ -77,9 +77,9 @@ public class Main {
 
 	private static void adicionarEstoque() {
 		if (Funcionalidade.sizeListaProdutos() > 0) {
-			
-			String codigo = JOptionPane.showInputDialog(null, 
-					Funcionalidade.printarProdutos() + "Qual produto deseja adicionar estoque?");
+
+			String codigo = JOptionPane.showInputDialog(null,
+					Funcionalidade.printarProdutos() + "Digite o código do produto que deseja adicionar estoque: ");
 
 			Produto produto = Funcionalidade.retornarProduto(codigo);
 
@@ -87,9 +87,9 @@ public class Main {
 				String quantidade = JOptionPane.showInputDialog("Digite a quantidade a ser adicionada: ");
 
 				if (Funcionalidade.verificarQuantidade(quantidade)) {
-					produto.setEstoque(produto.getEstoque() + Integer.parseInt(quantidade));				
-					
-					JOptionPane.showMessageDialog(null, String.format("%s atualizado com sucesso. Novo estoque: %d", 
+					produto.setEstoque(produto.getEstoque() + Integer.parseInt(quantidade));
+
+					JOptionPane.showMessageDialog(null, String.format("%s atualizado com sucesso. Novo estoque: %d",
 							produto.getNome(), produto.getEstoque()));
 
 				} else {
@@ -99,16 +99,46 @@ public class Main {
 				JOptionPane.showMessageDialog(null, "Produto não encontrado!");
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Cadastre produtos para adicionar estoque");
+			JOptionPane.showMessageDialog(null, "Cadastre produtos para adicionar estoque!");
 		}
 
 	}
 
-	private static void removerProduto() {
+	private static void venderProduto() {
+		if (Funcionalidade.sizeListaProdutos() > 0) {
 
+		} else {
+			JOptionPane.showMessageDialog(null, "Não existem produtos cadastrados para vender!");
+
+		}
 	}
 
-	private static void venderProduto() {
+	private static void removerProduto() {
+		if (Funcionalidade.sizeListaProdutos() > 0) {
+			String codigo = JOptionPane.showInputDialog(null,
+					Funcionalidade.printarProdutos() + "Digite o código do produto que deseja remover da loja: ");
+			Produto produto = Funcionalidade.retornarProduto(codigo);
 
+			if (produto != null) {
+				if (produto.getEstoque() > 0) {
+					int confirmacao = JOptionPane.showConfirmDialog(null,
+							String.format("Deseja realmente remover o produto %s? Se sim, aperte YES",
+									produto.getNome().toUpperCase()),
+							"Confirmação", JOptionPane.YES_NO_OPTION);
+
+					if (confirmacao == 1) {
+						JOptionPane.showMessageDialog(null, "Operação cancelada!");
+						return;
+					}
+				}
+				JOptionPane.showMessageDialog(null,
+						String.format("Produto (%s) removido com sucesso!", produto.getNome()));
+				Funcionalidade.removerProduto(produto);
+			} else {
+				JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Não existem produtos cadastrados para remover!");
+		}
 	}
 }

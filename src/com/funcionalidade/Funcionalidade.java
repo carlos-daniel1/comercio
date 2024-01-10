@@ -74,8 +74,8 @@ public class Funcionalidade {
 				1) Listar todos os produtos
 				2) Cadastrar novo produto
 				3) Adicionar estoque de um produto
-				4) Remover produto
-				5) Vender produto
+				4) Vender produto
+				5) Remover produto da loja
 				6) Sair
 				\nEscolha uma opção:
 				""";
@@ -85,8 +85,12 @@ public class Funcionalidade {
 		ListaProdutos.add(produto);
 	}
 	
-	public static int sizeListaProdutos() {
-		return ListaProdutos.size();
+	public static int sizeListaProdutos() {	
+		return ListaProdutos.size();		
+	}
+	
+	public static void removerProduto(Produto produto) {
+		ListaProdutos.remove(produto);
 	}
 
 }
