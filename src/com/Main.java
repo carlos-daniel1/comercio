@@ -106,7 +106,25 @@ public class Main {
 
 	private static void venderProduto() {
 		if (Funcionalidade.sizeListaProdutos() > 0) {
-
+			String codigo = JOptionPane.showInputDialog(null,
+					Funcionalidade.printarProdutos() + "Digite o código do produto que deseja vender estoque: ");
+			
+			Produto produto = Funcionalidade.retornarProduto(codigo);
+			
+			if(produto != null) {
+				String quantidade = JOptionPane.showInputDialog("Digite a quantidade que deseja vender: ");
+				
+				if(Funcionalidade.verificarVenda(quantidade, produto)) {
+					produto.setEstoque(produto.getEstoque() - Integer.parseInt(quantidade));
+					
+					JOptionPane.showMessageDialog(null, String.format("Produto %s vendido com sucesso! "
+							+ "Estoque atualizado: %d", produto.getNome(), produto.getEstoque()));	
+				} else {
+					JOptionPane.showMessageDialog(null, "Quantidade inválida!");
+				}			
+			} else {
+				JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Não existem produtos cadastrados para vender!");
 

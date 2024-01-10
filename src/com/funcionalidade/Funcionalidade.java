@@ -64,6 +64,12 @@ public class Funcionalidade {
 	}
 	
 	
+	public static boolean verificarVenda(String quantidade, Produto produto) {
+		if(!verificarQuantidade(quantidade) || Integer.parseInt(quantidade) > produto.getEstoque()) {
+			return false;
+		}
+		return true;
+	}
 
 	public static String printarAtual(String nome, String codigo, String estoque) {
 		return String.format("%s cadastrado com sucesso! (Código: %s | Estoque: %s)\n", nome, codigo, estoque);
