@@ -12,6 +12,7 @@ public class Funcionalidade {
 		if (ListaProdutos.isEmpty()) {
 			msg = "Não existem produtos cadastrados";
 		} else {
+			msg +="Produtos cadastrados: \n";
 			for (Produto p : ListaProdutos) {
 				msg += String.format("%s (código: %d | estoque: %d)\n", p.getNome(), p.getCodigo(), p.getEstoque());
 			}
